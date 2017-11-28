@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var app = express()
 var bodyParser = require('body-parser')
 var bcrypt = require('bcryptjs')
+var secrets = require('./secrets')
 
 // encrypted cookies, by mozilla
 var sessionsModule = require('client-sessions')
@@ -12,7 +13,7 @@ var sessionsMiddleware = sessionsModule({
     // the sessionsModule then returns the sessionsMiddleware function
     cookieName: 'in-class-auth-demo-cookie',
     // in a later lecture, we will learn how to NOT put secrets directly in our source code
-    secret: 'DR@G0n$',
+    secret: secrets.cookieSecret,
     requestKey: 'session',
     duration: 86400 * 1000 * 7, // one week in milliseconds
     cookie: {
